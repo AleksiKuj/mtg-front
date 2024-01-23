@@ -5,6 +5,7 @@ type ButtonProps = {
   onClick: () => void
   children?: ReactNode
   className?: string
+  isDisabled?: boolean
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -12,9 +13,14 @@ export const Button: React.FC<ButtonProps> = ({
   onClick,
   children,
   className = "",
+  isDisabled,
 }) => {
   return (
-    <button onClick={onClick} className={`py-2 px-4 rounded-md ${className}`}>
+    <button
+      onClick={onClick}
+      className={`py-2 px-4 rounded-md ${className}`}
+      disabled={isDisabled}
+    >
       {children ?? text}
     </button>
   )

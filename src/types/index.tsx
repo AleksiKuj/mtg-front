@@ -1,3 +1,0 @@
-type GuessRequest = {
-  name: String
-}
