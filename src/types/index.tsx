@@ -1,0 +1,3 @@
+type GuessRequest = {
+  name: String
+}
