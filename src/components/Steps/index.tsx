@@ -12,6 +12,9 @@ const Steps = () => {
       selectedStepNumber: selectedStepNumber + 1,
     }))
   }
+
+  //onclick skip
+  // send guess with empty name parameter
   return (
     <div className="flex flex-row gap-2 py-2">
       <Step stepNumber={1} />

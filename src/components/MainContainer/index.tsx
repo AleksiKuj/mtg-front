@@ -1,9 +1,4 @@
-import { Button } from "components/Common"
-import GuessInput from "components/GuessInput"
-import Guesses from "components/Guesses"
-import Header from "components/Header"
-import Hint from "components/Hint"
-import Steps from "components/Steps"
+import { Header, Hint, Steps, GuessInput, Guesses, Button } from "components"
 
 const MainContainer = () => {
   return (

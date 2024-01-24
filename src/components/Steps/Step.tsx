@@ -1,3 +1,4 @@
+import { Button } from "components"
 import { useAppContext } from "context"
 
 type StepProps = {
@@ -16,11 +17,11 @@ const Step = (props: StepProps) => {
   }
 
   return (
-    <button className="p-3 bg-gray-700 rounded-md" onClick={changeStepNumber}>
+    <Button className=" bg-gray-700" onClick={changeStepNumber}>
       <b className={`${selectedStepNumber === stepNumber && "text-red-500"}`}>
         {stepNumber}
       </b>
-    </button>
+    </Button>
   )
 }
 export default Step
