@@ -1,20 +1,37 @@
 import Step from "./Step"
 import { Button } from "components/Common"
 import { useAppContext } from "context"
+import useAppContextState from "context/appContextHelpers"
+import { createGuess } from "services/guessService"
+import { Guess, GuessRequest } from "types"
+import { MAX_GUESSES } from "utils"
 
 const Steps = () => {
   const appContext = useAppContext()
   const { selectedStepNumber } = appContext.data
+  const { incrementStepNumber, addGuess, setIsGameOver, setIsGameWon } =
+    useAppContextState(appContext)
 
-  const changeStepNumber = () => {
-    appContext.setData((prevState) => ({
-      ...prevState,
-      selectedStepNumber: selectedStepNumber + 1,
-    }))
+  const handleSkip = async () => {
+    const guessData: GuessRequest = { cardName: "" }
+    const response = await createGuess(guessData)
+    incrementStepNumber()
+
+    const guess: Guess = {
+      cardName: response.guess,
+      isCorrect: response.isCorrect,
+    }
+    if (
+      response.numberOfGuesses >= MAX_GUESSES ||
+      response.gameStatus === "WON"
+    ) {
+      setIsGameOver(true)
+    }
+    response.gameStatus === "WON" ? setIsGameWon(true) : setIsGameWon(false)
+    addGuess(guess)
+    addGuess(guess)
   }
 
-  //onclick skip
-  // send guess with empty name parameter
   return (
     <div className="flex flex-row gap-2 py-2">
       <Step stepNumber={1} />
@@ -25,7 +42,7 @@ const Steps = () => {
       <Step stepNumber={6} />
       <Button
         text="Skip"
-        onClick={changeStepNumber}
+        onClick={handleSkip}
         className="bg-emerald-700"
         isDisabled={selectedStepNumber >= 6}
       />

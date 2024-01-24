@@ -9,7 +9,7 @@ const Guess = (props: GuessProps) => {
   return (
     <div className="border border-slate-200 rounded-md w-full p-2 flex items-center flex-row">
       <span>{isCorrect ? <IoCheckmark /> : <IoClose />}</span>
-      <span> {text}</span>
+      <span>{!text ? "Skipped!" : text}</span>
     </div>
   )
 }

@@ -17,7 +17,11 @@ const Step = (props: StepProps) => {
   }
 
   return (
-    <Button className=" bg-gray-700" onClick={changeStepNumber}>
+    <Button
+      className=" bg-gray-700"
+      onClick={changeStepNumber}
+      isDisabled={selectedStepNumber <= stepNumber}
+    >
       <b className={`${selectedStepNumber === stepNumber && "text-red-500"}`}>
         {stepNumber}
       </b>

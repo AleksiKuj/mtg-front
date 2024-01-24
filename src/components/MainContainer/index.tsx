@@ -1,4 +1,4 @@
-import { Header, Hint, Steps, GuessInput, Guesses, Button } from "components"
+import { Header, Hint, Steps, GuessInput, Guesses } from "components"
 
 const MainContainer = () => {
   return (
@@ -8,11 +8,6 @@ const MainContainer = () => {
         <Hint />
         <Steps />
         <GuessInput />
-        <Button
-          text="Submit"
-          onClick={() => console.log("Submit")}
-          className="bg-emerald-800 w-full"
-        />
         <Guesses />
       </div>
     </div>
