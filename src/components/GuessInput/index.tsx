@@ -15,6 +15,8 @@ const GuessInput = () => {
     addGuess,
     setIsGameOver,
     setIsGameWon,
+    setHints,
+    incrementNumberOfGuesses,
   } = useAppContextState(appContext)
 
   const options = [
@@ -27,7 +29,7 @@ const GuessInput = () => {
     const guessData: GuessRequest = currentGuess
     const response = await createGuess(guessData)
     incrementStepNumber()
-
+    if (response.numberOfGuesses === null) return
     const guess: Guess = {
       cardName: response.guess,
       isCorrect: response.isCorrect,
@@ -40,6 +42,8 @@ const GuessInput = () => {
     }
     response.gameStatus === "WON" ? setIsGameWon(true) : setIsGameWon(false)
     addGuess(guess)
+    setHints(response.hintsProvided)
+    incrementNumberOfGuesses()
   }
 
   return (
@@ -50,11 +54,14 @@ const GuessInput = () => {
           if (e) changeCurrentGuess(e.value)
         }}
       />
-      <Button
-        text="Submit"
-        onClick={handleSubmit}
-        className="bg-emerald-700 w-full text-white"
-      />
+      {!isGameOver && (
+        <Button
+          text="Submit"
+          onClick={handleSubmit}
+          className="bg-emerald-700 w-full text-white"
+        />
+      )}
+
       <p>
         {isGameOver.toString()} {isGameWon.toString()}
       </p>

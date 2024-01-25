@@ -7,7 +7,7 @@ type StepProps = {
 const Step = (props: StepProps) => {
   const { stepNumber } = props
   const appContext = useAppContext()
-  const { selectedStepNumber } = appContext.data
+  const { selectedStepNumber, numberOfGuesses, isGameOver } = appContext.data
 
   const changeStepNumber = () => {
     appContext.setData((prevState) => ({
@@ -20,7 +20,7 @@ const Step = (props: StepProps) => {
     <Button
       className=" bg-gray-700"
       onClick={changeStepNumber}
-      isDisabled={selectedStepNumber <= stepNumber}
+      isDisabled={stepNumber > numberOfGuesses + 1 && !isGameOver}
     >
       <b className={`${selectedStepNumber === stepNumber && "text-red-500"}`}>
         {stepNumber}

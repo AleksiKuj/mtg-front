@@ -1,4 +1,4 @@
-import { Guess } from "types"
+import { Guess, HintType } from "types"
 import { AppContextType } from "./AppContext"
 
 const useAppContextState = (appContext: AppContextType) => {
@@ -28,11 +28,23 @@ const useAppContextState = (appContext: AppContextType) => {
       isGameWon,
     }))
   }
+  const setHints = (hints: HintType[]) => {
+    appContext.setData((prevState) => ({
+      ...prevState,
+      hints,
+    }))
+  }
 
   const incrementStepNumber = () => {
     appContext.setData((prevState) => ({
       ...prevState,
       selectedStepNumber: prevState.selectedStepNumber + 1,
+    }))
+  }
+  const incrementNumberOfGuesses = () => {
+    appContext.setData((prevState) => ({
+      ...prevState,
+      numberOfGuesses: prevState.numberOfGuesses + 1,
     }))
   }
 
@@ -42,6 +54,8 @@ const useAppContextState = (appContext: AppContextType) => {
     addGuess,
     setIsGameOver,
     setIsGameWon,
+    setHints,
+    incrementNumberOfGuesses,
   }
 }
 

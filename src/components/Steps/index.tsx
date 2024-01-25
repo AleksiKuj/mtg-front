@@ -8,9 +8,15 @@ import { MAX_GUESSES } from "utils"
 
 const Steps = () => {
   const appContext = useAppContext()
-  const { selectedStepNumber } = appContext.data
-  const { incrementStepNumber, addGuess, setIsGameOver, setIsGameWon } =
-    useAppContextState(appContext)
+  const { selectedStepNumber, isGameOver } = appContext.data
+  const {
+    incrementStepNumber,
+    addGuess,
+    setIsGameOver,
+    setIsGameWon,
+    setHints,
+    incrementNumberOfGuesses,
+  } = useAppContextState(appContext)
 
   const handleSkip = async () => {
     const guessData: GuessRequest = { cardName: "" }
@@ -29,23 +35,28 @@ const Steps = () => {
     }
     response.gameStatus === "WON" ? setIsGameWon(true) : setIsGameWon(false)
     addGuess(guess)
-    addGuess(guess)
+    setHints(response.hintsProvided)
+    incrementNumberOfGuesses()
   }
 
+  //disable steps bigger than numberOfGueses
   return (
     <div className="flex flex-row gap-2 py-2">
+      {/* //add loop based on MAX_GUESSES */}
       <Step stepNumber={1} />
       <Step stepNumber={2} />
       <Step stepNumber={3} />
       <Step stepNumber={4} />
       <Step stepNumber={5} />
       <Step stepNumber={6} />
-      <Button
-        text="Skip"
-        onClick={handleSkip}
-        className="bg-emerald-700"
-        isDisabled={selectedStepNumber >= 6}
-      />
+      {!isGameOver && (
+        <Button
+          text="Skip"
+          onClick={handleSkip}
+          className="bg-emerald-700"
+          isDisabled={selectedStepNumber >= 6}
+        />
+      )}
     </div>
   )
 }

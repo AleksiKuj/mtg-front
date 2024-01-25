@@ -1,4 +1,4 @@
-export { default as Hint } from "./Hint"
+export { default as Hints } from "./Hints"
 export { default as Steps } from "./Steps"
 export { default as Guesses } from "./Guesses"
 export { default as GuessInput } from "./GuessInput"
