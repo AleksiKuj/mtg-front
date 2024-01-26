@@ -6,7 +6,7 @@ const Hints = () => {
   const { hints, selectedStepNumber } = appContext.data
 
   const currentHint = hints?.find(
-    (hint) => hint.hintNumber + 2 === selectedStepNumber
+    (hint) => hint.hintNumber + 1 === selectedStepNumber
   )
   return (
     <div className="border-red-500 border w-full h-96">

@@ -34,7 +34,12 @@ const useAppContextState = (appContext: AppContextType) => {
       hints,
     }))
   }
-
+  const addHint = (hint: HintType) => {
+    appContext.setData((prevState) => ({
+      ...prevState,
+      hints: prevState.hints.concat(hint),
+    }))
+  }
   const incrementStepNumber = () => {
     appContext.setData((prevState) => ({
       ...prevState,
@@ -56,6 +61,7 @@ const useAppContextState = (appContext: AppContextType) => {
     setIsGameWon,
     setHints,
     incrementNumberOfGuesses,
+    addHint,
   }
 }
 
