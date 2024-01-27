@@ -6,6 +6,7 @@ export interface AppProps {
   isGameWon: boolean
   hints: HintType[]
   numberOfGuesses: number
+  cardList: CardListCard[]
 }
 
 export const defaultAppProps: AppProps = {
@@ -16,6 +17,7 @@ export const defaultAppProps: AppProps = {
   isGameOver: false,
   isGameWon: false,
   hints: [],
+  cardList: [],
 }
 
 export type HintType = {
@@ -30,4 +32,9 @@ export type GuessRequest = {
 export type Guess = {
   cardName: string
   isCorrect: boolean
+}
+
+export type CardListCard = {
+  name: string
+  id: string
 }

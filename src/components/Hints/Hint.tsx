@@ -10,7 +10,11 @@ const Hint = (props: HintProps) => {
     <>
       <p>{hint.hintNumber}</p>
       <p>{hint.givenHint.hintText}</p>
-      <p>{hint.givenHint.hintValue}</p>
+      <div>
+        {hint.givenHint.hintValue.split("\n").map((str) => (
+          <p key={str}>{str}</p>
+        ))}
+      </div>
     </>
   )
 }

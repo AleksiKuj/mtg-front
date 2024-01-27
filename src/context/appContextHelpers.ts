@@ -1,4 +1,4 @@
-import { Guess, HintType } from "types"
+import { CardListCard, Guess, HintType } from "types"
 import { AppContextType } from "./AppContext"
 
 const useAppContextState = (appContext: AppContextType) => {
@@ -40,6 +40,12 @@ const useAppContextState = (appContext: AppContextType) => {
       hints: prevState.hints.concat(hint),
     }))
   }
+  const setCardList = (cardList: CardListCard[]) => {
+    appContext.setData((prevState) => ({
+      ...prevState,
+      cardList,
+    }))
+  }
   const incrementStepNumber = () => {
     appContext.setData((prevState) => ({
       ...prevState,
@@ -62,6 +68,7 @@ const useAppContextState = (appContext: AppContextType) => {
     setHints,
     incrementNumberOfGuesses,
     addHint,
+    setCardList,
   }
 }
 

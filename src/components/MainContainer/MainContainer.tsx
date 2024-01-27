@@ -6,14 +6,20 @@ import { fetchData } from "services/api"
 
 const MainContainer = () => {
   const appContext = useAppContext()
-  const { addHint } = useAppContextState(appContext)
+  const { addHint, setCardList } = useAppContextState(appContext)
 
   useEffect(() => {
     const getFirstHint = async () => {
       const response = await fetchData("/firstHint")
       addHint(response)
     }
+    const getCardList = async () => {
+      const response = await fetchData("/search-cards")
+      setCardList(response)
+      console.log(response)
+    }
     getFirstHint()
+    getCardList()
   }, [])
 
   return (
