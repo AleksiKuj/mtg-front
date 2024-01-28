@@ -19,6 +19,7 @@ const GuessInput = () => {
     setIsGameWon,
     setHints,
     incrementNumberOfGuesses,
+    setStepNumber,
   } = useAppContextState(appContext)
   const [inputValue, setInputValue] = useState("")
   const [selectedValue, setSelectedValue] = useState<OptionType>(null)
@@ -47,10 +48,15 @@ const GuessInput = () => {
     ) {
       setIsGameOver(true)
     }
-    response.gameStatus === "WON" ? setIsGameWon(true) : setIsGameWon(false)
+
+    if (response.gameStatus === "WON") {
+      setIsGameWon(true)
+      setStepNumber(MAX_GUESSES + 1)
+    } else {
+      incrementStepNumber()
+    }
     addGuess(guess)
     setHints(response.hintsProvided)
-    incrementNumberOfGuesses()
     changeCurrentGuess("")
     setSelectedValue(null)
   }
@@ -79,7 +85,6 @@ const GuessInput = () => {
           className="bg-emerald-700 w-full text-white"
         />
       )}
-      <button onClick={() => console.log(inputValue)}>log</button>
       <p>
         {isGameOver.toString()} {isGameWon.toString()}
       </p>

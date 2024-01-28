@@ -39,22 +39,21 @@ const Steps = () => {
     incrementNumberOfGuesses()
   }
 
-  //disable steps bigger than numberOfGueses
   return (
     <div className="flex flex-row gap-2 py-2">
-      {/* //add loop based on MAX_GUESSES */}
       <Step stepNumber={1} />
       <Step stepNumber={2} />
       <Step stepNumber={3} />
       <Step stepNumber={4} />
       <Step stepNumber={5} />
       <Step stepNumber={6} />
+      {isGameOver && <Step stepNumber={7} />}
       {!isGameOver && (
         <Button
           text="Skip"
           onClick={handleSkip}
           className="bg-emerald-700"
-          isDisabled={selectedStepNumber >= 6}
+          isDisabled={selectedStepNumber > 6}
         />
       )}
     </div>
