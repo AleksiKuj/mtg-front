@@ -7,6 +7,7 @@ export interface AppProps {
   hints: HintType[]
   numberOfGuesses: number
   cardList: CardListCard[]
+  winningGuessNumber?: number
 }
 
 export const defaultAppProps: AppProps = {

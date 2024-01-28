@@ -18,8 +18,8 @@ const GuessInput = () => {
     setIsGameOver,
     setIsGameWon,
     setHints,
-    incrementNumberOfGuesses,
     setStepNumber,
+    setWinningGuessNumber,
   } = useAppContextState(appContext)
   const [inputValue, setInputValue] = useState("")
   const [selectedValue, setSelectedValue] = useState<OptionType>(null)
@@ -33,10 +33,11 @@ const GuessInput = () => {
       .map((card) => ({ label: card.name, value: card.name }))
   }, [inputValue, cardList])
 
+  if (isGameOver) return null
+
   const handleSubmit = async () => {
     const guessData: GuessRequest = currentGuess
     const response = await createGuess(guessData)
-    incrementStepNumber()
     if (response.numberOfGuesses === null) return
     const guess: Guess = {
       cardName: response.guess,
@@ -52,6 +53,7 @@ const GuessInput = () => {
     if (response.gameStatus === "WON") {
       setIsGameWon(true)
       setStepNumber(MAX_GUESSES + 1)
+      setWinningGuessNumber(response.numberOfGuesses)
     } else {
       incrementStepNumber()
     }
