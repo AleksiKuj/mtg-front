@@ -39,10 +39,14 @@ export const mapHintText = (text: string, value: string) => {
               .substring(1, value.length - 1)
               .split(",")
               .map((colorCode) => colorCode.trim() as ColorCode)
-              .map((colorCode) => {
+              .map((colorCode, index) => {
                 const imageName = colorImages[colorCode]
                 return imageName ? (
-                  <img src={imageName} alt={`${colorCode} color`} />
+                  <img
+                    src={imageName}
+                    alt={`${colorCode} color`}
+                    key={colorCode + index}
+                  />
                 ) : null
               })}
           </div>
@@ -60,17 +64,21 @@ export const mapHintText = (text: string, value: string) => {
         <div>
           <p>Mana cost</p>
           <div className="flex flex-row">
-            {value.match(/\{\d+}|\{[A-Za-z]\}/g)?.map((manaSymbol) => {
+            {value.match(/\{\d+}|\{[A-Za-z]\}/g)?.map((manaSymbol, index) => {
               manaSymbol = manaSymbol.replace(/[{}]/g, "") // Remove curly braces
               if (isNaN(parseInt(manaSymbol))) {
                 // If it's a color code
                 const imageName = colorImages[manaSymbol as ColorCode]
                 return imageName ? (
-                  <img src={imageName} alt={`${manaSymbol} mana`} />
+                  <img
+                    src={imageName}
+                    alt={`${manaSymbol} mana`}
+                    key={manaSymbol + index}
+                  />
                 ) : null
               } else {
                 // If it's a number
-                return <span>{manaSymbol}</span>
+                return <span key={manaSymbol + index}>{manaSymbol}</span>
               }
             })}
           </div>
@@ -80,8 +88,8 @@ export const mapHintText = (text: string, value: string) => {
       return (
         <div>
           <p>Card Text</p>
-          {value.split("\n").map((str) => (
-            <p key={str}>{str}</p>
+          {value.split("\n").map((str, index) => (
+            <p key={str + index}>{str}</p>
           ))}
         </div>
       )

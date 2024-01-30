@@ -9,17 +9,12 @@ const MainContainer = () => {
   const { addHint, setCardList } = useAppContextState(appContext)
 
   useEffect(() => {
-    const getFirstHint = async () => {
-      const response = await fetchData("/firstHint")
-      addHint(response)
+    const initialize = async () => {
+      const response = await fetchData("/initialize")
+      addHint(response.firstHint)
+      setCardList(response.searchCardsResponse.cards)
     }
-    const getCardList = async () => {
-      const response = await fetchData("/search-cards")
-      setCardList(response)
-      console.log(response)
-    }
-    getFirstHint()
-    getCardList()
+    initialize()
   }, [])
 
   return (
