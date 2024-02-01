@@ -1,5 +1,6 @@
 import { useAppContext } from "context"
 import Hint from "./Hint"
+import "./index.css"
 
 const Hints = () => {
   const appContext = useAppContext()

@@ -16,25 +16,60 @@ const colorImages: Record<ColorCode, string> = {
   C,
   G,
 }
+export const manaCostToText = (value: string) => {
+  return value.match(/\{\d+}|\{[A-Za-z]\}/g)?.map((manaSymbol, index) => {
+    manaSymbol = manaSymbol.replace(/[{}]/g, "") // Remove curly braces
+    if (isNaN(parseInt(manaSymbol))) {
+      const imageName = colorImages[manaSymbol as ColorCode]
+      return imageName ? (
+        <img
+          src={imageName}
+          alt={`${manaSymbol} mana`}
+          className="w-8"
+          key={manaSymbol + index}
+        />
+      ) : null
+    } else {
+      return (
+        <span className="mana-number" key={manaSymbol + index}>
+          {manaSymbol}
+        </span>
+      )
+    }
+  })
+}
+
+// ADD CHECKS FOR MANA COST AND TAPS
+export const formatCardText = (text: string) => {
+  return (
+    <div>
+      {text.split("\n").map((str, index) => (
+        <p className="p-1" key={str + index}>
+          {str}
+        </p>
+      ))}
+    </div>
+  )
+}
 
 export const mapHintText = (text: string, value: string) => {
   switch (text) {
     case "stats":
       return (
-        <div className="flex flex-col">
-          <p>Stats</p>
-          <div className="flex flex-row">
-            <img src={power} className="w-6" />
-            <p>{value}</p>
-            <img src={toughness} className="w-6" />
+        <div className="hint-section">
+          <h3 className="hint-title">Stats</h3>
+          <div className="stats-container">
+            <img src={power} alt="Power" className="stat-icon" />
+            <span className="stat-value">{value}</span>
+            <img src={toughness} alt="Toughness" className="stat-icon" />
           </div>
         </div>
       )
     case "colors":
       return (
-        <div>
-          <p>Colors</p>
-          <div className="flex flex-row">
+        <div className="hint-section">
+          <h3 className="hint-title">Colors</h3>
+          <div className="colors-container">
             {value
               .substring(1, value.length - 1)
               .split(",")
@@ -45,6 +80,7 @@ export const mapHintText = (text: string, value: string) => {
                   <img
                     src={imageName}
                     alt={`${colorCode} color`}
+                    className="color-icon"
                     key={colorCode + index}
                   />
                 ) : null
@@ -54,16 +90,16 @@ export const mapHintText = (text: string, value: string) => {
       )
     case "type":
       return (
-        <div className="flex flex-col">
-          <p>Card type</p>
-          <p>{value}</p>
+        <div className="hint-section">
+          <h3 className="hint-title">Card Type</h3>
+          <p className="hint-content">{value}</p>
         </div>
       )
     case "manaCost":
       return (
-        <div>
-          <p>Mana cost</p>
-          <div className="flex flex-row">
+        <div className="hint-section">
+          <h3 className="hint-title">Mana Cost</h3>
+          <div className="mana-cost-container">
             {value.match(/\{\d+}|\{[A-Za-z]\}/g)?.map((manaSymbol, index) => {
               manaSymbol = manaSymbol.replace(/[{}]/g, "") // Remove curly braces
               if (isNaN(parseInt(manaSymbol))) {
@@ -73,12 +109,17 @@ export const mapHintText = (text: string, value: string) => {
                   <img
                     src={imageName}
                     alt={`${manaSymbol} mana`}
+                    className="mana-icon"
                     key={manaSymbol + index}
                   />
                 ) : null
               } else {
                 // If it's a number
-                return <span key={manaSymbol + index}>{manaSymbol}</span>
+                return (
+                  <span className="mana-number" key={manaSymbol + index}>
+                    {manaSymbol}
+                  </span>
+                )
               }
             })}
           </div>
@@ -86,22 +127,28 @@ export const mapHintText = (text: string, value: string) => {
       )
     case "cardText":
       return (
-        <div>
-          <p>Card Text</p>
-          {value.split("\n").map((str, index) => (
-            <p key={str + index}>{str}</p>
-          ))}
+        <div className="hint-section">
+          <h3 className="hint-title">Card Text</h3>
+          <div className="card-text-content">
+            {value.split("\n").map((str, index) => (
+              <p key={str + index}>{str}</p>
+            ))}
+          </div>
         </div>
       )
     case "set":
       return (
-        <div className="flex flex-col">
-          <p>Set name</p>
-          <p>{value}</p>
+        <div className="hint-section">
+          <h3 className="hint-title">Set Name</h3>
+          <p className="hint-content">{value}</p>
         </div>
       )
     case "imageUrl":
-      return <img alt="Card face" src={value} />
+      return (
+        <div className="image-container">
+          <img alt="Card face" src={value} className="card-image" />
+        </div>
+      )
     default:
       return ""
   }
