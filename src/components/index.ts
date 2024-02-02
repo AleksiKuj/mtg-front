@@ -1,5 +1,3 @@
-export { Hints } from "./Hints"
-export { Steps } from "./Steps"
 export { Guesses } from "./Guesses"
 export { GuessInput } from "./GuessInput"
 export { MainContainer } from "./MainContainer"

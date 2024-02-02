@@ -1,7 +1,7 @@
 export interface AppProps {
   selectedStepNumber: number
   currentGuess: GuessRequest
-  guesses: Guess[]
+  guesses: GuessType[]
   isGameOver: boolean
   isGameWon: boolean
   hints: HintType[]
@@ -30,9 +30,26 @@ export type GuessRequest = {
   cardName: string
 }
 
-export type Guess = {
-  cardName: string
-  isCorrect: boolean
+export type GuessType = {
+  name: string
+  manaCost: string
+  colors: string[]
+  rarity: string
+  setName: string
+  power: string
+  toughness: string
+  imageUrl: string
+  cmc: number
+  subtypes: string[]
+  attributeCorrectness: {
+    cmc: string
+    colors: string
+    power: string
+    rarity: string
+    set: string
+    subtypes: string
+    toughness: string
+  }
 }
 
 export type CardListCard = {

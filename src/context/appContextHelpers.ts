@@ -16,6 +16,13 @@ const useAppContextState = (appContext: AppContextType) => {
     }))
   }
 
+  const setGuesses = (guesses: Guess[]) => {
+    appContext.setData((prevState) => ({
+      ...prevState,
+      guesses,
+    }))
+  }
+
   const setIsGameOver = (isGameOver: boolean) => {
     appContext.setData((prevState) => ({
       ...prevState,
@@ -83,6 +90,7 @@ const useAppContextState = (appContext: AppContextType) => {
     setCardList,
     setStepNumber,
     setWinningGuessNumber,
+    setGuesses,
   }
 }
 

@@ -19,6 +19,7 @@ const GuessInput = () => {
     setIsGameWon,
     setHints,
     setStepNumber,
+    setGuesses,
     setWinningGuessNumber,
   } = useAppContextState(appContext)
   const [inputValue, setInputValue] = useState("")
@@ -39,26 +40,21 @@ const GuessInput = () => {
     const guessData: GuessRequest = currentGuess
     const response = await createGuess(guessData)
     if (response.numberOfGuesses === null) return
-    const guess: Guess = {
-      cardName: response.guess,
-      isCorrect: response.isCorrect,
-    }
-    if (
-      response.numberOfGuesses >= MAX_GUESSES ||
-      response.gameStatus === "WON"
-    ) {
-      setIsGameOver(true)
-    }
+    console.log(response)
 
-    if (response.gameStatus === "WON") {
-      setIsGameWon(true)
-      setStepNumber(MAX_GUESSES + 1)
-      setWinningGuessNumber(response.numberOfGuesses)
-    } else {
-      incrementStepNumber()
-    }
-    addGuess(guess)
-    setHints(response.hintsProvided)
+    setGuesses(response.guesses)
+    // if (
+    //   response.numberOfGuesses >= MAX_GUESSES ||
+    //   response.gameStatus === "WON"
+    // ) {
+    //   setIsGameOver(true)
+    // }
+
+    // if (response.gameStatus === "WON") {
+    //   setIsGameWon(true)
+    //   setWinningGuessNumber(response.numberOfGuesses)
+    // }
+
     changeCurrentGuess("")
     setSelectedValue(null)
   }
