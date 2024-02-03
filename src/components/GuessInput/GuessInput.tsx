@@ -1,7 +1,8 @@
-import { Button } from "components"
+import { Button, HintButton } from "components"
 import { useAppContext } from "context"
 import useAppContextState from "context/appContextHelpers"
 import { useMemo, useState } from "react"
+import { RiLightbulbFlashLine } from "react-icons/ri"
 import Select from "react-select"
 import { createGuess } from "services/guessService"
 import { Guess, GuessRequest } from "types"
@@ -71,13 +72,17 @@ const GuessInput = () => {
 
   return (
     <div className="text-black w-full flex flex-col gap-2 max-w-md mx-auto">
-      <Select
-        options={filteredOptions}
-        onInputChange={(e) => setInputValue(e)}
-        onChange={handleOnChange}
-        placeholder="Type to search cards"
-        value={selectedValue}
-      />
+      <div className="flex flex-row w-full items-center">
+        <HintButton />
+        <Select
+          options={filteredOptions}
+          onInputChange={(e) => setInputValue(e)}
+          onChange={handleOnChange}
+          placeholder="Type to search cards"
+          value={selectedValue}
+          className="w-full"
+        />
+      </div>
       {!isGameOver && (
         <Button
           text="Submit"

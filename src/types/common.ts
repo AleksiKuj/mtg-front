@@ -11,6 +11,7 @@ export interface AppProps {
   cardList: CardListCard[]
   winningGuessNumber?: number
   hp: HpType
+  hint: string
 }
 
 export const defaultAppProps: AppProps = {
@@ -23,6 +24,7 @@ export const defaultAppProps: AppProps = {
   hints: [],
   cardList: [],
   hp: { current: MAX_GUESSES, max: MAX_GUESSES },
+  hint: "",
 }
 
 export type HintType = {

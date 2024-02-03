@@ -1,4 +1,4 @@
-import { Header, GuessInput, Guesses, Hp, Answer } from "components"
+import { Header, GuessInput, Guesses, Hp, Answer, Hint } from "components"
 import { useAppContext } from "context"
 import useAppContextState from "context/appContextHelpers"
 import { useEffect } from "react"
@@ -23,6 +23,7 @@ const MainContainer = () => {
         {/* <Answer /> */}
         <GuessInput />
         <Hp />
+        <Hint />
         <Guesses />
       </div>
     </div>

@@ -18,6 +18,8 @@ const Guesses = () => {
   ]
 
   if (guesses.length === 0) return null
+
+  const sortedGuesses = guesses.toReversed()
   return (
     <div className=" p-4 px-8 mx-auto  max-w-7xl">
       <div className="grid grid-cols-8 gap-2 text-center">
@@ -28,7 +30,7 @@ const Guesses = () => {
             ))}
           </div>
         </div>
-        {guesses.map((guess, index) => (
+        {sortedGuesses.map((guess, index) => (
           <Guess guess={guess} key={guess.name + index} />
         ))}
       </div>
