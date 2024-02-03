@@ -2,6 +2,6 @@ type GuessHeaderProps = {
   text: string
 }
 const GuessHeader = (props: GuessHeaderProps) => {
-  return <h1 className="text-white text-xl">{props.text}</h1>
+  return <span className="text-white font-bold w-full">{props.text}</span>
 }
 export default GuessHeader

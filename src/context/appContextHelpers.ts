@@ -77,6 +77,12 @@ const useAppContextState = (appContext: AppContextType) => {
       numberOfGuesses: prevState.numberOfGuesses + 1,
     }))
   }
+  const decrementHp = () => {
+    appContext.setData((prevState) => ({
+      ...prevState,
+      hp: { current: prevState.hp.current - 1, max: prevState.hp.max },
+    }))
+  }
 
   return {
     changeCurrentGuess,
@@ -91,6 +97,7 @@ const useAppContextState = (appContext: AppContextType) => {
     setStepNumber,
     setWinningGuessNumber,
     setGuesses,
+    decrementHp,
   }
 }
 

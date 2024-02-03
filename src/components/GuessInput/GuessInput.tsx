@@ -21,6 +21,7 @@ const GuessInput = () => {
     setStepNumber,
     setGuesses,
     setWinningGuessNumber,
+    decrementHp,
   } = useAppContextState(appContext)
   const [inputValue, setInputValue] = useState("")
   const [selectedValue, setSelectedValue] = useState<OptionType>(null)
@@ -57,6 +58,7 @@ const GuessInput = () => {
 
     changeCurrentGuess("")
     setSelectedValue(null)
+    decrementHp()
   }
   const handleOnChange = (e: OptionType | null) => {
     if (e) {
@@ -68,7 +70,7 @@ const GuessInput = () => {
   }
 
   return (
-    <div className="text-black w-full flex flex-col gap-2">
+    <div className="text-black w-full flex flex-col gap-2 max-w-md mx-auto">
       <Select
         options={filteredOptions}
         onInputChange={(e) => setInputValue(e)}

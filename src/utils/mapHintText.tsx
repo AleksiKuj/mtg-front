@@ -16,27 +16,15 @@ const colorImages: Record<ColorCode, string> = {
   C,
   G,
 }
-export const manaCostToText = (value: string) => {
-  return value.match(/\{\d+}|\{[A-Za-z]\}/g)?.map((manaSymbol, index) => {
-    manaSymbol = manaSymbol.replace(/[{}]/g, "") // Remove curly braces
-    if (isNaN(parseInt(manaSymbol))) {
-      const imageName = colorImages[manaSymbol as ColorCode]
-      return imageName ? (
-        <img
-          src={imageName}
-          alt={`${manaSymbol} mana`}
-          className="w-8"
-          key={manaSymbol + index}
-        />
-      ) : null
-    } else {
-      return (
-        <span className="mana-number" key={manaSymbol + index}>
-          {manaSymbol}
-        </span>
-      )
-    }
-  })
+export const colorsToIcons = (arr: string[]) => {
+  let icons = []
+  for (const element of arr) {
+    const colorSymbol = colorImages[element]
+    icons.push(
+      <img src={colorSymbol} alt={colorSymbol} className="w-8" key={element} />
+    )
+  }
+  return icons
 }
 
 // ADD CHECKS FOR MANA COST AND TAPS

@@ -1,3 +1,5 @@
+import { MAX_GUESSES } from "utils"
+
 export interface AppProps {
   selectedStepNumber: number
   currentGuess: GuessRequest
@@ -8,6 +10,7 @@ export interface AppProps {
   numberOfGuesses: number
   cardList: CardListCard[]
   winningGuessNumber?: number
+  hp: HpType
 }
 
 export const defaultAppProps: AppProps = {
@@ -19,6 +22,7 @@ export const defaultAppProps: AppProps = {
   isGameWon: false,
   hints: [],
   cardList: [],
+  hp: { current: MAX_GUESSES, max: MAX_GUESSES },
 }
 
 export type HintType = {
@@ -28,6 +32,11 @@ export type HintType = {
 
 export type GuessRequest = {
   cardName: string
+}
+
+export type HpType = {
+  current: number
+  max: number
 }
 
 export type GuessType = {
