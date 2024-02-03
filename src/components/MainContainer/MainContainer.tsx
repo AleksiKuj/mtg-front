@@ -1,5 +1,4 @@
-import { Header, GuessInput, Guesses, Answer } from "components"
-import { Hp } from "components/Hp"
+import { Header, GuessInput, Guesses, Hp, Answer } from "components"
 import { useAppContext } from "context"
 import useAppContextState from "context/appContextHelpers"
 import { useEffect } from "react"
@@ -18,8 +17,8 @@ const MainContainer = () => {
   }, [])
 
   return (
-    <div className="bg-blue-950 h-screen flex-col flex-grow ">
-      <div className="gap-2 flex flex-col items-center  text-zinc-100 ">
+    <div className="bg-blue-950 min-h-[100vh] flex-col">
+      <div className="gap-2 flex flex-col items-center  text-zinc-100">
         <Header />
         {/* <Answer /> */}
         <GuessInput />

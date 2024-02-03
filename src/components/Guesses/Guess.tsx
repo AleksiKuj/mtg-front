@@ -1,3 +1,4 @@
+import { Card } from "components"
 import { GuessType } from "types"
 import { colorsToIcons } from "utils"
 
@@ -51,8 +52,8 @@ const Guess = (props: GuessProps) => {
 
   return (
     <>
-      <div className="col-span-1 bg-red-700 border border-white rounded-md">
-        {name}
+      <div className="col-span-1 bg-red-700 border border-white rounded-md relative">
+        <img src={imageUrl} alt={name} />
       </div>
       <div
         className={`col-span-1 border border-white rounded-md ${getColorClass(

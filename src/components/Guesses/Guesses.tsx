@@ -7,7 +7,7 @@ const Guesses = () => {
   const { guesses } = appContext.data
 
   const headings = [
-    "Name",
+    "Card",
     "Set",
     "Total mana cost",
     "Power",
