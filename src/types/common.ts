@@ -67,4 +67,4 @@ export type CardListCard = {
   name: string
   id: string
 }
-export type ColorCode = "R" | "U" | "W" | "B" | "C" | "G"
+export type ColorCode = "R" | "U" | "W" | "B" | "C" | "G" | "T"
