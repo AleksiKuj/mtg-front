@@ -6,4 +6,6 @@ export { Answer } from "./Answer"
 export { Hp } from "./Hp"
 export { HintButton } from "./HintButton"
 export { Hint } from "./Hint"
+export { InfoBox } from "./InfoBox"
+
 export * from "./Common"
