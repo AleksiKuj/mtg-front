@@ -3,7 +3,9 @@ import { formatCardText } from "utils"
 
 const Hint = () => {
   const appContext = useAppContext()
-  const { hint } = appContext.data
+  const { hint, isGameOver } = appContext.data
+
+  if (!hint || isGameOver) return null
   return (
     <div>
       <h2 className="font-bold text-xl text-center">Hint</h2>

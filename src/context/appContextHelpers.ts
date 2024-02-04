@@ -100,6 +100,12 @@ const useAppContextState = (appContext: AppContextType) => {
       hp: { current: prevState.hp.current - 1, max: prevState.hp.max },
     }))
   }
+  const setTargetCard = (targetCard: GuessType) => {
+    appContext.setData((prevState) => ({
+      ...prevState,
+      targetCard,
+    }))
+  }
 
   return {
     changeCurrentGuess,
@@ -118,6 +124,7 @@ const useAppContextState = (appContext: AppContextType) => {
     setHint,
     setHp,
     setMaxGuesses,
+    setTargetCard,
   }
 }
 

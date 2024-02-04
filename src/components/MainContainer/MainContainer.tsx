@@ -22,7 +22,7 @@ const MainContainer = () => {
     <div className="bg-blue-950 min-h-[100vh] flex-col">
       <div className="gap-2 flex flex-col items-center  text-zinc-100">
         <Header />
-        {/* <Answer /> */}
+        <Answer />
         <GuessInput />
         <Hp />
         <Hint />

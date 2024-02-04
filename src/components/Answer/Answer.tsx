@@ -1,20 +1,27 @@
 import { useAppContext } from "context"
+import AnswerCard from "./AnswerCard"
 
 const Answer = () => {
   const appContext = useAppContext()
-  const { isGameWon, isGameOver, winningGuessNumber } = appContext.data
+  const { isGameWon, isGameOver, winningGuessNumber, targetCard } =
+    appContext.data
+
   if (!isGameOver) return null
+
   const winString = winningGuessNumber === 1 ? "guess" : "guesses"
+
   return (
-    <>
+    <div className="flex flex-col justify-center items-center">
+      <AnswerCard />
+      <p className="font-bold text-xl">{targetCard?.name}</p>
       {isGameWon ? (
         <p>
-          You nailed it in {winningGuessNumber} {winString}!
+          You got it in {winningGuessNumber} {winString}!
         </p>
       ) : (
-        <p>Better luck next time</p>
+        <p>Game over! Better luck next time!</p>
       )}
-    </>
+    </div>
   )
 }
 export default Answer

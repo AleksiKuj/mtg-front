@@ -27,7 +27,6 @@ export const colorsToIcons = (arr: string[]) => {
   return icons
 }
 
-// ADD CHECKS FOR MANA COST AND TAPS
 export const formatCardText = (text: string) => {
   // Split text by lines and map each line to a paragraph
   return (
@@ -68,7 +67,9 @@ export const manaCostToText = (value: string) => {
       } else {
         return (
           <span className="mana-number" key={manaSymbol + index}>
+            &nbsp;
             {manaSymbol}
+            &nbsp;
           </span>
         )
       }

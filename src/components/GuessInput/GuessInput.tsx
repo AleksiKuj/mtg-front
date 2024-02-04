@@ -21,6 +21,7 @@ const GuessInput = () => {
     setWinningGuessNumber,
     decrementHp,
     setCurrentHp,
+    setTargetCard,
   } = useAppContextState(appContext)
   const [inputValue, setInputValue] = useState("")
   const [selectedValue, setSelectedValue] = useState<OptionType>(null)
@@ -43,21 +44,21 @@ const GuessInput = () => {
     console.log(response)
 
     setGuesses(response.guesses)
-    // if (
-    //   response.numberOfGuesses >= MAX_GUESSES ||
-    //   response.gameStatus === "WON"
-    // ) {
-    //   setIsGameOver(true)
-    // }
-
-    // if (response.gameStatus === "WON") {
-    //   setIsGameWon(true)
-    //   setWinningGuessNumber(response.numberOfGuesses)
-    // }
-
     changeCurrentGuess("")
     setSelectedValue(null)
-    setCurrentHp(response.maxGuesses - response.numberOfGuesses)
+
+    if (response.gameStatus !== "IN_PROGRESS") {
+      setIsGameOver(true)
+    }
+    if (response.gameStatus === "WON" || response.correct === true) {
+      setIsGameWon(true)
+      setWinningGuessNumber(response.numberOfGuesses)
+    }
+    if (response.gameStatus === "IN_PROGRESS") {
+      setCurrentHp(response.maxGuesses - response.numberOfGuesses)
+    }
+
+    response.targetCard && setTargetCard(response.targetCard)
   }
   const handleOnChange = (e: OptionType | null) => {
     if (e) {
@@ -89,9 +90,6 @@ const GuessInput = () => {
           isDisabled={!selectedValue}
         />
       )}
-      <p>
-        {isGameOver.toString()} {isGameWon.toString()}
-      </p>
     </div>
   )
 }

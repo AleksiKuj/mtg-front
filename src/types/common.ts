@@ -11,6 +11,7 @@ export interface AppProps {
   hp: HpType
   hint: string
   maxGuesses: number
+  targetCard?: GuessType
 }
 
 export const defaultAppProps: AppProps = {
@@ -61,6 +62,7 @@ export type GuessType = {
     subtypes: string
     toughness: string
   }
+  type?: string
 }
 
 export type CardListCard = {
