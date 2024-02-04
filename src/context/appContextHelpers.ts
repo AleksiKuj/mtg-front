@@ -1,4 +1,4 @@
-import { CardListCard, Guess, HintType } from "types"
+import { CardListCard, GuessType, HintType } from "types"
 import { AppContextType } from "./AppContext"
 
 const useAppContextState = (appContext: AppContextType) => {
@@ -9,14 +9,7 @@ const useAppContextState = (appContext: AppContextType) => {
     }))
   }
 
-  const addGuess = (guess: Guess) => {
-    appContext.setData((prevState) => ({
-      ...prevState,
-      guesses: prevState.guesses.concat(guess),
-    }))
-  }
-
-  const setGuesses = (guesses: Guess[]) => {
+  const setGuesses = (guesses: GuessType[]) => {
     appContext.setData((prevState) => ({
       ...prevState,
       guesses,
@@ -83,6 +76,24 @@ const useAppContextState = (appContext: AppContextType) => {
       numberOfGuesses: prevState.numberOfGuesses + 1,
     }))
   }
+  const setHp = (hp: number) => {
+    appContext.setData((prevState) => ({
+      ...prevState,
+      hp: { current: hp, max: hp },
+    }))
+  }
+  const setCurrentHp = (hp: number) => {
+    appContext.setData((prevState) => ({
+      ...prevState,
+      hp: { current: hp, max: prevState.hp.max },
+    }))
+  }
+  const setMaxGuesses = (maxGuesses: number) => {
+    appContext.setData((prevState) => ({
+      ...prevState,
+      maxGuesses,
+    }))
+  }
   const decrementHp = () => {
     appContext.setData((prevState) => ({
       ...prevState,
@@ -93,7 +104,6 @@ const useAppContextState = (appContext: AppContextType) => {
   return {
     changeCurrentGuess,
     incrementStepNumber,
-    addGuess,
     setIsGameOver,
     setIsGameWon,
     setHints,
@@ -104,7 +114,10 @@ const useAppContextState = (appContext: AppContextType) => {
     setWinningGuessNumber,
     setGuesses,
     decrementHp,
+    setCurrentHp,
     setHint,
+    setHp,
+    setMaxGuesses,
   }
 }
 

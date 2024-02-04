@@ -2,11 +2,9 @@ import { Button, HintButton } from "components"
 import { useAppContext } from "context"
 import useAppContextState from "context/appContextHelpers"
 import { useMemo, useState } from "react"
-import { RiLightbulbFlashLine } from "react-icons/ri"
 import Select from "react-select"
 import { createGuess } from "services/guessService"
-import { Guess, GuessRequest } from "types"
-import { MAX_GUESSES } from "utils"
+import { GuessType, GuessRequest } from "types"
 
 type OptionType = { label: string; value: string } | null
 const GuessInput = () => {
@@ -15,7 +13,6 @@ const GuessInput = () => {
   const {
     changeCurrentGuess,
     incrementStepNumber,
-    addGuess,
     setIsGameOver,
     setIsGameWon,
     setHints,
@@ -23,6 +20,7 @@ const GuessInput = () => {
     setGuesses,
     setWinningGuessNumber,
     decrementHp,
+    setCurrentHp,
   } = useAppContextState(appContext)
   const [inputValue, setInputValue] = useState("")
   const [selectedValue, setSelectedValue] = useState<OptionType>(null)
@@ -59,7 +57,7 @@ const GuessInput = () => {
 
     changeCurrentGuess("")
     setSelectedValue(null)
-    decrementHp()
+    setCurrentHp(response.maxGuesses - response.numberOfGuesses)
   }
   const handleOnChange = (e: OptionType | null) => {
     if (e) {
@@ -88,6 +86,7 @@ const GuessInput = () => {
           text="Submit"
           onClick={handleSubmit}
           className="bg-emerald-700 w-full text-white"
+          isDisabled={!selectedValue}
         />
       )}
       <p>

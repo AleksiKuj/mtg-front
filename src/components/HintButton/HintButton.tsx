@@ -8,14 +8,14 @@ import { fetchData } from "services/api"
 const HintButton = () => {
   const appContext = useAppContext()
   const { hp, hint } = appContext.data
-  const { setHint, decrementHp } = useAppContextState(appContext)
+  const { setHint, setCurrentHp } = useAppContextState(appContext)
   const [isOpen, setIsOpen] = useState(false)
 
   const getHint = async () => {
     const response = await fetchData("hint")
     console.log(response)
     setHint(response.hint)
-    decrementHp()
+    setCurrentHp(response.maxGuesses - response.numberOfGuesses)
     setIsOpen(false)
   }
 

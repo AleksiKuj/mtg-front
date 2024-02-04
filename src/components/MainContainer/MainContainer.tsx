@@ -6,12 +6,14 @@ import { fetchData } from "services/api"
 
 const MainContainer = () => {
   const appContext = useAppContext()
-  const { setCardList } = useAppContextState(appContext)
+  const { setCardList, setHp, setMaxGuesses } = useAppContextState(appContext)
 
   useEffect(() => {
     const initialize = async () => {
       const response = await fetchData("/initialize")
       setCardList(response.searchCardsResponse.cards)
+      setHp(response.maxGuesses)
+      setMaxGuesses(response.maxGuesses)
     }
     initialize()
   }, [])
