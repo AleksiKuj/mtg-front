@@ -8,7 +8,7 @@ const InfoBox = () => {
 
   if (!showInfo) return null
   return (
-    <div className="relative border border-white  bg-gray-800 rounded-md p-2">
+    <div className="relative text-sm sm:text-emerald-50 border border-white  bg-gray-800 rounded-md p-2 max-w-sm sm:max-w-md">
       <button
         onClick={() => setShowInfo(false)}
         className="absolute top-[-5px] right-[-5px] hover:text-gray-300  text-white bg-transparentrounded-full text-sm p-1"
@@ -22,7 +22,7 @@ const InfoBox = () => {
         </div>
         <div className="w-24">
           <div className="w-8 h-8 bg-yellow-500"></div>Yellow: Some of the
-          values match but not all
+          values match
         </div>
         <div className="w-24">
           <div className="w-8 h-8 bg-green-500"></div>Green: All of the values
