@@ -1,4 +1,4 @@
-import { CardListCard, GuessType, HintType } from "types"
+import { CardListCard, GuessType } from "types"
 import { AppContextType } from "./AppContext"
 
 const useAppContextState = (appContext: AppContextType) => {
@@ -28,34 +28,10 @@ const useAppContextState = (appContext: AppContextType) => {
       isGameWon,
     }))
   }
-  const setHints = (hints: HintType[]) => {
-    appContext.setData((prevState) => ({
-      ...prevState,
-      hints,
-    }))
-  }
-  const addHint = (hint: HintType) => {
-    appContext.setData((prevState) => ({
-      ...prevState,
-      hints: prevState.hints.concat(hint),
-    }))
-  }
   const setCardList = (cardList: CardListCard[]) => {
     appContext.setData((prevState) => ({
       ...prevState,
       cardList,
-    }))
-  }
-  const incrementStepNumber = () => {
-    appContext.setData((prevState) => ({
-      ...prevState,
-      selectedStepNumber: prevState.selectedStepNumber + 1,
-    }))
-  }
-  const setStepNumber = (num: number) => {
-    appContext.setData((prevState) => ({
-      ...prevState,
-      selectedStepNumber: num,
     }))
   }
   const setWinningGuessNumber = (num: number) => {
@@ -68,12 +44,6 @@ const useAppContextState = (appContext: AppContextType) => {
     appContext.setData((prevState) => ({
       ...prevState,
       hint,
-    }))
-  }
-  const incrementNumberOfGuesses = () => {
-    appContext.setData((prevState) => ({
-      ...prevState,
-      numberOfGuesses: prevState.numberOfGuesses + 1,
     }))
   }
   const setHp = (hp: number) => {
@@ -94,12 +64,6 @@ const useAppContextState = (appContext: AppContextType) => {
       maxGuesses,
     }))
   }
-  const decrementHp = () => {
-    appContext.setData((prevState) => ({
-      ...prevState,
-      hp: { current: prevState.hp.current - 1, max: prevState.hp.max },
-    }))
-  }
   const setTargetCard = (targetCard: GuessType) => {
     appContext.setData((prevState) => ({
       ...prevState,
@@ -115,17 +79,11 @@ const useAppContextState = (appContext: AppContextType) => {
 
   return {
     changeCurrentGuess,
-    incrementStepNumber,
     setIsGameOver,
     setIsGameWon,
-    setHints,
-    incrementNumberOfGuesses,
-    addHint,
     setCardList,
-    setStepNumber,
     setWinningGuessNumber,
     setGuesses,
-    decrementHp,
     setCurrentHp,
     setHint,
     setHp,

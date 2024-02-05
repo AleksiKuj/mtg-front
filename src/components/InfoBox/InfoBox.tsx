@@ -8,47 +8,51 @@ const InfoBox = () => {
 
   if (!showInfo) return null
   return (
-    <div className="relative text-sm sm:text-emerald-50 border border-white  bg-gray-800 rounded-md p-2 max-w-sm sm:max-w-md">
+    <div className="relative white-text-with-outline text-sm sm:text-emerald-50 border border-white  bg-gray-800 rounded-md p-2 max-w-sm sm:max-w-md">
       <button
         onClick={() => setShowInfo(false)}
         className="absolute top-[-5px] right-[-5px] hover:text-gray-300  text-white bg-transparentrounded-full text-sm p-1"
       >
         <IoClose className="w-8 h-8" />
       </button>
-      <div className="flex flex-row gap-5">
-        <div className="w-24">
-          <div className="w-8 h-8 bg-red-500"></div>Red: None of the values
-          match
-        </div>
-        <div className="w-24">
-          <div className="w-8 h-8 bg-yellow-500"></div>Yellow: Some of the
-          values match
-        </div>
-        <div className="w-24">
-          <div className="w-8 h-8 bg-green-500"></div>Green: All of the values
-          match
-        </div>
-        <div className="w-24">
-          <div
-            className="w-8 h-8 "
-            style={{
-              backgroundImage: upArrowSVG,
-              backgroundRepeat: "no-repeat",
-              backgroundPosition: "center",
-            }}
-          ></div>
-          Up arrow: the target value is higher
-        </div>
-        <div className="w-24">
-          <div
-            className="w-8 h-8 "
-            style={{
-              backgroundImage: downArrowSVG,
-              backgroundRepeat: "no-repeat",
-              backgroundPosition: "center",
-            }}
-          ></div>
-          Up arrow: the target value is lower
+      <div className="flex flex-col gap-2">
+        <p>The daily card is always a legendary creature</p>
+        <hr />
+        <div className="flex flex-row gap-5">
+          <div className="w-24">
+            <div className="w-8 h-8 bg-red-500"></div>Red: None of the values
+            match
+          </div>
+          <div className="w-24">
+            <div className="w-8 h-8 bg-yellow-500"></div>Yellow: Some of the
+            values match
+          </div>
+          <div className="w-24">
+            <div className="w-8 h-8 bg-green-500"></div>Green: All of the values
+            match
+          </div>
+          <div className="w-24">
+            <div
+              className="w-8 h-8 "
+              style={{
+                backgroundImage: upArrowSVG,
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center",
+              }}
+            ></div>
+            Up arrow: the target value is higher
+          </div>
+          <div className="w-24">
+            <div
+              className="w-8 h-8 "
+              style={{
+                backgroundImage: downArrowSVG,
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center",
+              }}
+            ></div>
+            Up arrow: the target value is lower
+          </div>
         </div>
       </div>
     </div>

@@ -8,7 +8,7 @@ const Answer = () => {
 
   if (!isGameOver) return null
 
-  const winString = winningGuessNumber === 1 ? "guess" : "guesses"
+  const winString = winningGuessNumber === 1 ? "attempt" : "attempts"
 
   return (
     <div className="flex flex-col justify-center items-center">

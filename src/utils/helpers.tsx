@@ -16,7 +16,7 @@ const colorImages: Record<ColorCode, string> = {
   G,
   T,
 }
-export const colorsToIcons = (arr: string[]) => {
+export const colorsToIcons = (arr: ColorCode[]) => {
   let icons = []
   for (const element of arr) {
     const colorSymbol = colorImages[element]
@@ -77,7 +77,7 @@ export const manaCostToText = (value: string) => {
   )
 }
 
-export const formatTime = (totalSeconds) => {
+export const formatTime = (totalSeconds: number) => {
   const hours = Math.floor(totalSeconds / 3600)
   const minutes = Math.floor((totalSeconds % 3600) / 60)
   const seconds = totalSeconds % 60

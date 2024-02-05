@@ -21,11 +21,11 @@ const Guesses = () => {
 
   const sortedGuesses = guesses.toReversed()
   return (
-    <div className="p-4 px-8 mx-auto max-w-full">
+    <div className="p-4 px-8 mx-auto max-w-full text-lg">
       <div className="overflow-x-auto">
-        <div className="">
+        <div>
           {/* Headings */}
-          <div className="grid grid-cols-8 gap-28 md:gap-24 lg:gap-8 text-center">
+          <div className="grid grid-cols-8 gap-x-28  lg:gap-x-8 white-text-with-outline text-center">
             {headings.map((heading, index) => (
               <div className="col-span-1" key={index + heading}>
                 <GuessHeader text={heading} />
@@ -33,7 +33,10 @@ const Guesses = () => {
             ))}
           </div>
           {/* Guesses */}
-          <div className="grid grid-cols-8 gap-28 md:gap-24 lg:gap-8 text-center ">
+          <div
+            style={{ textShadow: "-1px 1px 0 rgba(0, 0, 0, 1)" }}
+            className="grid grid-cols-8 gap-x-28 gap-y-4 md:gap-x-24 lg:gap-x-8 text-center font-semibold "
+          >
             {sortedGuesses.map((guess, index) => (
               <Guess guess={guess} key={guess.name + index} />
             ))}

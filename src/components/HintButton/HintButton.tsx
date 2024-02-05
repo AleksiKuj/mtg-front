@@ -1,8 +1,8 @@
-import { Button, Modal } from "components"
+import { Modal } from "components"
 import { useAppContext } from "context"
 import useAppContextState from "context/appContextHelpers"
 import { useState } from "react"
-import { RiLightbulbFlashLine } from "react-icons/ri"
+import { GiTreasureMap } from "react-icons/gi"
 import { fetchData } from "services/api"
 
 const HintButton = () => {
@@ -13,7 +13,6 @@ const HintButton = () => {
 
   const getHint = async () => {
     const response = await fetchData("hint")
-    console.log(response)
     setHint(response.hint)
     setCurrentHp(response.maxGuesses - response.numberOfGuesses)
     setIsOpen(false)
@@ -23,20 +22,25 @@ const HintButton = () => {
     setIsOpen(true)
   }
 
-  if (hint || hp.current > 5) return null
+  if (hint || hp.current > 5 || hp.current === 1) return null
   return (
     <>
-      <Button onClick={handleOpenModal}>
-        <RiLightbulbFlashLine className="text-yellow-500 w-8 h-8" />
-      </Button>
+      <button onClick={handleOpenModal}>
+        <GiTreasureMap className="text-amber-500 w-10 h-10 " />
+      </button>
       <Modal
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
         title="Confirmation required"
         onConfirm={getHint}
       >
-        <p>You can pay 1 life to get a one-time hint.</p>
-        <p>The hint will reveal the cards text and flavor text if it exists.</p>
+        <p>
+          You can pay <b>1 life</b> to get a one-time hint.
+        </p>
+        <p>
+          The hint will reveal the cards text and flavor text if it exists{" "}
+          <b>but you will lose one life</b>.
+        </p>
       </Modal>
     </>
   )

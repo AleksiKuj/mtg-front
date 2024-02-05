@@ -1,11 +1,8 @@
 export interface AppProps {
-  selectedStepNumber: number
   currentGuess: GuessRequest
   guesses: GuessType[]
   isGameOver: boolean
   isGameWon: boolean
-  hints: HintType[]
-  numberOfGuesses: number
   cardList: CardListCard[]
   winningGuessNumber?: number
   hp: HpType
@@ -16,22 +13,14 @@ export interface AppProps {
 }
 
 export const defaultAppProps: AppProps = {
-  selectedStepNumber: 1,
-  numberOfGuesses: 0,
   currentGuess: { cardName: "" },
   guesses: [],
   isGameOver: false,
   isGameWon: false,
-  hints: [],
   cardList: [],
-  hp: { current: 0, max: 0 },
+  hp: { current: 10, max: 10 },
   hint: "",
-  maxGuesses: 0,
-}
-
-export type HintType = {
-  hintNumber: number
-  givenHint: { hintText: string; hintValue: string }
+  maxGuesses: 10,
 }
 
 export type GuessRequest = {
@@ -64,6 +53,7 @@ export type GuessType = {
     toughness: string
   }
   type?: string
+  correct?: boolean
 }
 
 export type CardListCard = {

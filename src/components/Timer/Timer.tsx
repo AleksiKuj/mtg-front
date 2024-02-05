@@ -27,7 +27,7 @@ const Timer = () => {
 
   return (
     <div>
-      <p>{formatTime(timeLeft)} Until next card </p>
+      <p>{timeLeft && formatTime(timeLeft)} Until next card </p>
     </div>
   )
 }

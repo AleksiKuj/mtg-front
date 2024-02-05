@@ -1,4 +1,3 @@
-import { Card } from "components"
 import { GuessType } from "types"
 import { colorsToIcons } from "utils"
 
@@ -19,6 +18,7 @@ const Guess = (props: GuessProps) => {
     cmc,
     subtypes,
     attributeCorrectness,
+    correct,
   } = guess
 
   const getColorClass = (correctness: string) => {
@@ -51,10 +51,14 @@ const Guess = (props: GuessProps) => {
   const downArrowSVG = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231b1b1c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E")`
 
   const cellClasses =
-    "col-span-1 w-24 px-2 md:w-28 lg:w-32  border border-white rounded-md"
+    "col-span-1 w-28 px-2 md:w-28 lg:w-36 shadow-sm  border border-white rounded-md"
   return (
     <>
-      <div className={`${cellClasses} px-0`}>
+      <div
+        className={`${cellClasses} px-0 ${
+          correct ? "bg-green-600" : "bg-red-700"
+        }`}
+      >
         <img src={imageUrl} alt={name} />
       </div>
       <div

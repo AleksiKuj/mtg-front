@@ -6,10 +6,11 @@ const Hint = () => {
   const { hint, isGameOver } = appContext.data
 
   if (!hint || isGameOver) return null
+
   return (
-    <div>
+    <div className="shadow-sm white-text-with-outline">
       <h2 className="font-bold text-xl text-center">Hint</h2>
-      {formatCardText(hint)}
+      <div className="font-semibold">{formatCardText(hint)}</div>
     </div>
   )
 }

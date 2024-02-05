@@ -9,17 +9,13 @@ import { GuessType, GuessRequest } from "types"
 type OptionType = { label: string; value: string } | null
 const GuessInput = () => {
   const appContext = useAppContext()
-  const { currentGuess, isGameOver, isGameWon, cardList } = appContext.data
+  const { currentGuess, isGameOver, guesses, cardList } = appContext.data
   const {
     changeCurrentGuess,
-    incrementStepNumber,
     setIsGameOver,
     setIsGameWon,
-    setHints,
-    setStepNumber,
     setGuesses,
     setWinningGuessNumber,
-    decrementHp,
     setCurrentHp,
     setTargetCard,
   } = useAppContextState(appContext)
@@ -39,9 +35,16 @@ const GuessInput = () => {
 
   const handleSubmit = async () => {
     const guessData: GuessRequest = currentGuess
+    const guessExists = guesses.some(
+      (guess) => guess.name === selectedValue?.value
+    )
+    if (guessExists) {
+      changeCurrentGuess("")
+      setSelectedValue(null)
+      return
+    }
     const response = await createGuess(guessData)
     if (response.numberOfGuesses === null) return
-    console.log(response)
 
     setGuesses(response.guesses)
     changeCurrentGuess("")
@@ -86,8 +89,9 @@ const GuessInput = () => {
         <Button
           text="Submit"
           onClick={handleSubmit}
-          className="bg-emerald-700 w-full text-white"
+          className="w-full"
           isDisabled={!selectedValue}
+          color="green"
         />
       )}
     </div>

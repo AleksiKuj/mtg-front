@@ -12,7 +12,8 @@ import { useAppContext } from "context"
 import useAppContextState from "context/appContextHelpers"
 import { useEffect } from "react"
 import { fetchData } from "services/api"
-import bg from "assets/bg.webp"
+import bg from "assets/bg.png"
+import "App.css"
 
 const MainContainer = () => {
   const appContext = useAppContext()
@@ -32,15 +33,15 @@ const MainContainer = () => {
 
   return (
     <div
-      className=" min-h-[100vh] flex-col"
+      className=" min-h-[100vh] flex-col tracking-wider"
       style={{
         backgroundImage: `url(${bg}`,
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
+        backgroundAttachment: "fixed",
       }}
     >
-      {/* <div className="bg-blue-950 min-h-[100vh] flex-col"> */}
       <div className="gap-2 flex flex-col items-center  text-zinc-100">
         <Header />
         <InfoBox />
