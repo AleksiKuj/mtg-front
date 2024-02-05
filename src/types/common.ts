@@ -35,7 +35,7 @@ export type HpType = {
 export type GuessType = {
   name: string
   manaCost: string
-  colors: string[]
+  colors: ColorCode[]
   rarity: string
   setName: string
   power: string

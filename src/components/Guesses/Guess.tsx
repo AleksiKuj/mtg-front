@@ -8,7 +8,6 @@ const Guess = (props: GuessProps) => {
   const { guess } = props
   const {
     name,
-    manaCost,
     colors,
     rarity,
     setName,
