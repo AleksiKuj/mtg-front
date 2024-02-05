@@ -106,6 +106,12 @@ const useAppContextState = (appContext: AppContextType) => {
       targetCard,
     }))
   }
+  const setTimeUntilReset = (timeUntilReset: number) => {
+    appContext.setData((prevState) => ({
+      ...prevState,
+      timeUntilReset,
+    }))
+  }
 
   return {
     changeCurrentGuess,
@@ -125,6 +131,7 @@ const useAppContextState = (appContext: AppContextType) => {
     setHp,
     setMaxGuesses,
     setTargetCard,
+    setTimeUntilReset,
   }
 }
 

@@ -7,5 +7,6 @@ export { Hp } from "./Hp"
 export { HintButton } from "./HintButton"
 export { Hint } from "./Hint"
 export { InfoBox } from "./InfoBox"
+export { Timer } from "./Timer"
 
 export * from "./Common"

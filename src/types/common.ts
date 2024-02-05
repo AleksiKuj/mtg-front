@@ -12,6 +12,7 @@ export interface AppProps {
   hint: string
   maxGuesses: number
   targetCard?: GuessType
+  timeUntilReset?: number
 }
 
 export const defaultAppProps: AppProps = {

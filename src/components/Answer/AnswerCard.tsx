@@ -23,7 +23,11 @@ const AnswerCard = () => {
       >
         {/* CARD FACE */}
         <div className="h-full">
-          <img src={targetCard?.imageUrl} alt={targetCard?.name} />
+          <img
+            src={targetCard?.imageUrl}
+            className="w-full h-full"
+            alt={targetCard?.name}
+          />
           <div className="absolute right-[-20px] bottom-0  transform -translate-y-1/2 flex flex-col space-y-2">
             <button className="bg-yellow-500 rounded-full p-2 text-white focus:outline-none">
               <IoInformationCircleOutline
