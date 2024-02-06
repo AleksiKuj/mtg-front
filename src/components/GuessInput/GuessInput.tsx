@@ -73,7 +73,7 @@ const GuessInput = () => {
   }
 
   return (
-    <div className="text-black w-full flex flex-col gap-2  max-w-sm sm:max-w-md mx-auto">
+    <div className="text-black w-full flex flex-col gap-2 px-2  max-w-sm sm:max-w-md mx-auto">
       <div className="flex flex-row w-full items-center">
         <HintButton />
         <Select

@@ -8,17 +8,17 @@ const InfoBox = () => {
 
   if (!showInfo) return null
   return (
-    <div className="relative white-text-with-outline text-sm sm:text-emerald-50 border border-white  bg-gray-800 rounded-md p-2 max-w-sm sm:max-w-md">
+    <div className="relative white-text-with-outline text-sm  sm:text-emerald-50 border border-white  bg-gray-800 rounded-md p-2 max-w-xs sm:max-w-md">
       <button
         onClick={() => setShowInfo(false)}
         className="absolute top-[-5px] right-[-5px] hover:text-gray-300  text-white bg-transparentrounded-full text-sm p-1"
       >
         <IoClose className="w-8 h-8" />
       </button>
-      <div className="flex flex-col gap-2">
-        <p>The daily card is always a legendary creature</p>
+      <div className="flex flex-col gap-2 ">
+        <p>The daily card is always a legendary creature.</p>
         <hr />
-        <div className="flex flex-row gap-5">
+        <div className="flex flex-row gap-5 flex-wrap justify-center">
           <div className="w-24">
             <div className="w-8 h-8 bg-red-500"></div>Red: None of the values
             match
